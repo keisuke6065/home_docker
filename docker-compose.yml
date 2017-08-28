@@ -1,0 +1,15 @@
+version: '2'
+services:
+  mysql:
+    container_name: centos_mysql
+    build: mysql
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: 1
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./mysql/mysql_conf:/etc/mysql/conf.d
+    volumes_from:
+      - datastore
+  datastore:
+    build: ./datastore
